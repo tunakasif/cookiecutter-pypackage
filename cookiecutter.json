@@ -1,0 +1,10 @@
+{
+  "full_name": "John Doe",
+  "email": "johndoe@example.com",
+  "github_username": "johndoe",
+  "project_name": "python-project",
+  "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
+  "project_slug": "{{ cookiecutter.package_name.replace('-', '_') }}",
+  "project_short_description": "Python project contains all the boilerplate you need to create a Python package.",
+  "_copy_without_render": [".github/workflows/build.yml"]
+}
