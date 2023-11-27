@@ -5,7 +5,7 @@ all: format lint security test requirements
 
 install:
 	git init
-	poetry install
+	$(EXECUTER) poetry install
 	$(EXECUTER) pre-commit install
 
 clean:
