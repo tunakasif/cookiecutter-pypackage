@@ -17,8 +17,7 @@ A simple cookiecutter template for general python projects, including:
 
 ```sh
 cookiecutter gh:tunakasif/cookiecutter-pypackage
-cd <project_name>/
-make all
+cd <project-name>/
 make init
 ```
 
