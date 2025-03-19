@@ -9,6 +9,13 @@ repos:
         stages: [push]
   - repo: local
     hooks:
+      - id: requirements
+        name: requirements
+        entry: make requirements
+        language: system
+        pass_filenames: false
+  - repo: local
+    hooks:
       - id: format
         name: format
         entry: make format
@@ -33,24 +40,6 @@ repos:
       - id: test
         name: test
         entry: make test
-        language: system
-        pass_filenames: false
-        stages: [pre-commit]
-  - repo: local
-    hooks:
-      - id: poetry-export
-        name: requirements
-        entry: poetry export
-        args:
-          [
-            "-f",
-            "requirements.txt",
-            "-o",
-            "requirements.txt",
-            "--with",
-            "dev",
-            "--without-hashes",
-          ]
         language: system
         pass_filenames: false
         stages: [pre-commit]

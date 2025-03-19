@@ -1,11 +1,11 @@
 PROJECT_NAME:={{cookiecutter.project_slug}}
-EXECUTER:=poetry run
+EXECUTER:=uv run
 
 all: format lint security test requirements
 
 install:
 	git init
-	$(EXECUTER) poetry install
+	$(EXECUTER) uv sync
 	$(EXECUTER) pre-commit install
 
 clean:
@@ -13,7 +13,7 @@ clean:
 	$(EXECUTER) ruff clean
 
 requirements:
-	poetry export -f requirements.txt -o requirements.txt --with dev --without-hashes
+	uv export --no-hashes --format requirements-txt > requirements.txt
 
 test:
 	$(EXECUTER) pytest --cov-report term-missing --cov-report html --cov $(PROJECT_NAME)/
