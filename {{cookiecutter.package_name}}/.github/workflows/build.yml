@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
         uses: actions/setup-python@v5
         with:
-          python-version: "{% raw %}${{ matrix.python-version }}{% endraw %}"
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -28,12 +28,12 @@ jobs:
         run: tox
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
-        if: "{% raw %}${{ env.CODECOV_TOKEN != '' }}{% endraw %}"
+        if: {% raw %}${{ env.CODECOV_TOKEN != '' }}{% endraw %}
         env:
-          CODECOV_TOKEN: "{% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}"
+          CODECOV_TOKEN: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
         with:
-          token: "{% raw %}${{ env.CODECOV_TOKEN }}{% endraw %}"
-          slug: "{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+          token: {% raw %}${{ env.CODECOV_TOKEN }}{% endraw %}
+          slug: {{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}
 
   bump-version:
     needs: tox
@@ -49,8 +49,8 @@ jobs:
       # publishing to PyPI. Set PERSONAL_ACCESS_TOKEN secret and use the
       # following line instead of the one below it:
       #
-      # PERSONAL_ACCESS_TOKEN: "{% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}"
-      PERSONAL_ACCESS_TOKEN: "{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}"
+      # PERSONAL_ACCESS_TOKEN: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
+      PERSONAL_ACCESS_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -59,16 +59,16 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
         with:
-          token: "{% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}"
+          token: {% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           fetch-depth: 0
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
-          github_token: "{% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}"
+          github_token: {% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           changelog_increment_filename: body.md
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           body_path: "body.md"
-          tag_name: "{% raw %}${{ env.REVISION }}{% endraw %}"
-          token: "{% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}"
+          tag_name: {% raw %}${{ env.REVISION }}{% endraw %}
+          token: {% raw %}${{ env.PERSONAL_ACCESS_TOKEN }}{% endraw %}
