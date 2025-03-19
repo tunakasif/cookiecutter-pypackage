@@ -1,7 +1,7 @@
 fail_fast: true
 repos:
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v2.42.1
+    rev: v4.4.1
     hooks:
       - id: commitizen
       - id: commitizen-branch
