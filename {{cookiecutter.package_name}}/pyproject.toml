@@ -68,8 +68,9 @@ disallow_untyped_defs = true
 name = "cz_conventional_commits"
 tag_format = "$version"
 version = "0.1.0"
+version_provider = "uv"
 version_files = [
-    "pyproject.toml:^version",
+    "pyproject.toml:version",
     "{{ cookiecutter.project_slug }}/__init__.py:__version__",
 ]
 major_version_zero = true
