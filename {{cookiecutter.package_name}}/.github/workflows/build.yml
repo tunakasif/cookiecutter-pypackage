@@ -52,6 +52,8 @@ jobs:
       # PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
