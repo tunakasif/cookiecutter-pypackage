@@ -3,7 +3,7 @@ EXECUTER:=uv run
 
 all: format lint security test requirements
 
-install:
+init:
 	git init
 	$(EXECUTER) uv sync
 	$(EXECUTER) pre-commit install
