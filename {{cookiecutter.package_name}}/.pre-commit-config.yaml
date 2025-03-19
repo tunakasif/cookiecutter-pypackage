@@ -1,11 +1,11 @@
 fail_fast: true
+default_install_hook_types: [pre-commit, commit-msg]
 repos:
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.4.1
     hooks:
       - id: commitizen
-      - id: commitizen-branch
-        stages: [pre-push]
+        stages: [commit-msg]
   - repo: local
     hooks:
       - id: requirements
