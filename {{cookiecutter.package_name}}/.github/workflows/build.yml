@@ -36,27 +36,34 @@ jobs:
     needs: tox
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     env:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      # !! IMPORTANT !!
+      # Here PERSONAL_ACCESS_TOKEN is set to GITHUB_TOKEN, this is usually fine,
+      # but when you use the repository's GITHUB_TOKEN to perform tasks, events
+      # triggered by the GITHUB_TOKEN will not create a new workflow run. This
+      # prevents you from accidentally creating recursive workflow runs. You
+      # will want to configure a GitHub Actions secret with a Personal Access
+      # Token if you want GitHub Actions CI checks to run on releases, such as
+      # publishing to PyPI. Set PERSONAL_ACCESS_TOKEN secret and use the
+      # following line instead of the one below it:
+      #
+      # PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
-        if: ${{ env.PERSONAL_ACCESS_TOKEN != '' }}
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          token: "${{ env.PERSONAL_ACCESS_TOKEN }}"
           fetch-depth: 0
       - name: Create bump and changelog
-        if: ${{ env.PERSONAL_ACCESS_TOKEN != '' }}
         uses: commitizen-tools/commitizen-action@master
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ env.PERSONAL_ACCESS_TOKEN }}
           changelog_increment_filename: body.md
       - name: Release
-        if: ${{ env.PERSONAL_ACCESS_TOKEN != '' }}
         uses: softprops/action-gh-release@v2
         with:
           body_path: "body.md"
           tag_name: ${{ env.REVISION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ env.PERSONAL_ACCESS_TOKEN }}
