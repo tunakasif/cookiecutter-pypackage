@@ -9,7 +9,7 @@ A simple cookiecutter template for general python projects, including:
 - test coverage with Codecov
 - linting \& formatting with ruff
 - security checks with bandit
-- dependency management with Poetry
+- dependency management with uv
 - pre-commit hooks with ruff and mypy
 - Makefile for automating common tasks
 
