@@ -27,10 +27,13 @@ jobs:
       - name: Test with tox
         run: tox
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: ${{ env.CODECOV_TOKEN != '' }}
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          token: ${{ env.CODECOV_TOKEN }}
+          slug: {{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}
 
   bump-version:
     needs: tox
