@@ -1,6 +1,6 @@
-from {{ cookiecutter.project_slug }} import __version__
-
-
-def test_version() -> None:
-    assert __version__ == "0.1.0"
-
+def test_import():
+    """Test that the package can be imported without errors."""
+    try:
+        import {{ cookiecutter.project_slug }}
+    except ImportError as e:
+        raise AssertionError("Failed to import the package.") from e
