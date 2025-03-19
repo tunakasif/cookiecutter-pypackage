@@ -18,8 +18,8 @@ A simple cookiecutter template for general python projects, including:
 ```sh
 cookiecutter gh:tunakasif/cookiecutter-pypackage
 cd <project_name>/
-make install
 make all
+make init
 ```
 
 ## Tools and Setup
@@ -43,7 +43,7 @@ Ruff is used for linting and formatting the code. Configuration is available in 
 
 The `Makefile` provides a set of commands to streamline project setup and maintenance. Key commands include:
 
-- `make install`: Initialize the project, install dependencies, and set up pre-commit hooks.
+- `make init`: Initialize the project, install dev dependencies, and set up pre-commit hooks.
 - `make format`: Format the code using Ruff.
 - `make lint`: Lint the code using Ruff and MyPy.
 - `make security`: Run security checks using Bandit.

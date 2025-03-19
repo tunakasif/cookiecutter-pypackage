@@ -6,5 +6,5 @@
 You can initialize the project with `git`, generate virtual environment and install dependencies with `uv` by running:
 
 ```sh
-make install
+make init
 ```
