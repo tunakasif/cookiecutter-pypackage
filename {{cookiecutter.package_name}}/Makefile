@@ -1,7 +1,7 @@
 PROJECT_NAME:={{cookiecutter.project_slug}}
 EXECUTER:=uv run
 
-all: format lint security test requirements
+all: format lint type security test requirements
 
 init:
 	git init
@@ -23,6 +23,8 @@ format:
 
 lint:
 	$(EXECUTER) ruff check . --fix
+
+type:
 	$(EXECUTER) mypy .
 
 security:

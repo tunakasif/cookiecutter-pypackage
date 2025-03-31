@@ -30,6 +30,13 @@ repos:
         stages: [pre-commit]
   - repo: local
     hooks:
+      - id: type
+        name: type
+        entry: make type
+        language: system
+        stages: [pre-commit]
+  - repo: local
+    hooks:
       - id: security
         name: security
         entry: make security
