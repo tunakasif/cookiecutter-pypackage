@@ -34,6 +34,7 @@ repos:
         entry: make security
         language: system
         stages: [pre-commit]
+{% if cookiecutter.use_pytest -%}
   - repo: local
     hooks:
       - id: test
@@ -42,3 +43,4 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-commit]
+{%- endif %}

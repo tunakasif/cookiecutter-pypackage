@@ -28,8 +28,10 @@ dev = [
     "pep8-naming>=0.14.1",
     "pip-audit>=2.8.0",
     "pre-commit>=4.2.0",
+{% if cookiecutter.use_pytest -%}
     "pytest-cov>=6.0.0",
     "pytest>=8.3.5",
+{%- endif %}
     "pyupgrade>=3.19.1",
     "ruff>=0.11.0",
     "tox>=4.24.2",
@@ -54,11 +56,13 @@ extend-select = [
     "UP", # pyupgrade
 ]
 
+{% if cookiecutter.use_pytest -%}
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/*" = ["S101"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
+{%- endif %}
 
 [tool.mypy]
 ignore_missing_imports = true
