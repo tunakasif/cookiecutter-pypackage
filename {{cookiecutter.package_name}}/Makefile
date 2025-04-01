@@ -1,7 +1,7 @@
 PROJECT_NAME:={{cookiecutter.project_slug}}
 EXECUTER:=uv run
 
-all: format lint type security test requirements
+all: format lint type security test
 
 init:
 	git init
@@ -11,9 +11,6 @@ init:
 clean:
 	rm -rf .mypy_cache .pytest_cache .coverage htmlcov
 	$(EXECUTER) ruff clean
-
-requirements:
-	uv export --no-hashes --format requirements-txt > requirements.txt
 
 test:
 	$(EXECUTER) pytest --cov-report term-missing --cov-report html --cov $(PROJECT_NAME)/
