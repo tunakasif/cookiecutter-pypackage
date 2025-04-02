@@ -18,20 +18,26 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+{% if cookiecutter.use_security -%}
     "bandit>=1.8.3",
-    "commitizen>=4.4.1",
+    "pip-audit>=2.8.0",
+{%- endif %}
+{% if cookiecutter.use_jupyter -%}
     "ipykernel>=6.29.5",
     "ipython>=8.34.0",
     "ipywidgets>=8.1.5",
     "jupyter>=1.1.1",
+{%- endif %}
+{% if cookiecutter.use_mypy -%}
     "mypy>=1.15.0",
-    "pep8-naming>=0.14.1",
-    "pip-audit>=2.8.0",
-    "pre-commit>=4.2.0",
+{%- endif %}
 {% if cookiecutter.use_pytest -%}
     "pytest-cov>=6.0.0",
     "pytest>=8.3.5",
 {%- endif %}
+    "commitizen>=4.4.1",
+    "pep8-naming>=0.14.1",
+    "pre-commit>=4.2.0",
     "pyupgrade>=3.19.1",
     "ruff>=0.11.0",
     "tox>=4.24.2",
@@ -54,6 +60,7 @@ extend-select = [
     "S",  # flake8-bandit
     "I",  # isort
     "UP", # pyupgrade
+    "N",  # pep8-naming
 ]
 
 {% if cookiecutter.use_pytest -%}
@@ -64,9 +71,11 @@ extend-select = [
 filterwarnings = ["ignore::DeprecationWarning"]
 {%- endif %}
 
+{% if cookiecutter.use_mypy -%}
 [tool.mypy]
 ignore_missing_imports = true
 disallow_untyped_defs = true
+{%- endif %}
 
 [tool.commitizen]
 name = "cz_conventional_commits"

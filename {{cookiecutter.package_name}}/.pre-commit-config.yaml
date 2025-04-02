@@ -20,6 +20,7 @@ repos:
         entry: make lint
         language: system
         stages: [pre-commit]
+{% if cookiecutter.use_mypy -%}
   - repo: local
     hooks:
       - id: type
@@ -27,6 +28,8 @@ repos:
         entry: make type
         language: system
         stages: [pre-commit]
+{%- endif %}
+{% if cookiecutter.use_security -%}
   - repo: local
     hooks:
       - id: security
@@ -34,6 +37,7 @@ repos:
         entry: make security
         language: system
         stages: [pre-commit]
+{%- endif %}
 {% if cookiecutter.use_pytest -%}
   - repo: local
     hooks:
