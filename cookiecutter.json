@@ -1,14 +1,31 @@
 {
+  "project_name": "my-python-project",
+  "package_name": "{{ cookiecutter.project_name | slugify }}",
+  "project_slug": "{{ cookiecutter.package_name.replace('-', '_') }}",
+  "project_short_description": "This is my Python project.",
+
   "full_name": "John Doe",
   "email": "johndoe@example.com",
   "github_username": "johndoe",
-  "project_name": "python-project",
-  "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
-  "project_slug": "{{ cookiecutter.package_name.replace('-', '_') }}",
-  "project_short_description": "Python project contains all the boilerplate you need to create a Python package.",
+
   "use_mypy": true,
   "use_security": true,
   "use_pytest": true,
   "use_codecov": false,
-  "use_jupyter": true
+  "use_jupyter": true,
+
+  "__prompts__": {
+    "project_name": "Enter project name (will be slugified)",
+    "project_short_description": "Enter a short description for the project",
+
+    "full_name": "Enter author full name",
+    "email": "Enter author e-mail",
+    "github_username": "Enter GitHub username or organization",
+
+    "use_mypy": "Use static type checking with mypy?",
+    "use_security": "Use pip-audit and bandit for security checks?",
+    "use_pytest": "Use pytest for testing?",
+    "use_codecov": "Use codecov for code coverage?\n\t- requires pytest\n\t- requires setting CODECOV_TOKEN GitHub secret",
+    "use_jupyter": "Install Jupyter notebook extensions for development?"
+  }
 }
