@@ -1,7 +1,7 @@
 {
   "project_name": "my-python-project",
-  "package_slug": "{{ cookiecutter.project_name | slugify }}",
-  "package_name": "{{ cookiecutter.package_slug.replace('-', '_') }}",
+  "__package_slug": "{{ cookiecutter.project_name | slugify }}",
+  "__package_name": "{{ cookiecutter.__package_slug.replace('-', '_') }}",
   "project_short_description": "This is my Python project.",
 
   "full_name": "John Doe",

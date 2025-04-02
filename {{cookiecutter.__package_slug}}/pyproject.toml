@@ -1,5 +1,5 @@
 [project]
-name = "{{ cookiecutter.package_slug }}"
+name = "{{ cookiecutter.__package_slug }}"
 version = "0.1.0"
 description = "{{ cookiecutter.project_short_description }}"
 authors = [
@@ -84,7 +84,7 @@ version = "0.1.0"
 version_provider = "uv"
 version_files = [
     "pyproject.toml:version",
-    "{{ cookiecutter.package_name }}/__init__.py:__version__",
+    "{{ cookiecutter.__package_name }}/__init__.py:__version__",
 ]
 major_version_zero = true
 update_changelog_on_bump = true

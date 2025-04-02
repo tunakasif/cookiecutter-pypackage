@@ -1,4 +1,4 @@
-PROJECT_NAME:={{cookiecutter.package_name}}
+PROJECT_NAME:={{cookiecutter.__package_name}}
 EXECUTER:=uv run
 
 all: format lint{% if cookiecutter.use_mypy %} type{% endif %}{% if cookiecutter.use_security %} security{% endif %}{% if cookiecutter.use_pytest %} test{% endif %}
