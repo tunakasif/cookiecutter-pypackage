@@ -34,7 +34,7 @@ jobs:
           CODECOV_TOKEN: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
         with:
           token: {% raw %}${{ env.CODECOV_TOKEN }}{% endraw %}
-          slug: {{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}
+          slug: {{ cookiecutter.github_username }}/{{ cookiecutter.__package_name }}
       {% endif %}
 
   bump-version:
