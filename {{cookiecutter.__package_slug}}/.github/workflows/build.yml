@@ -26,7 +26,7 @@ jobs:
           python -m pip install tox tox-gh-actions
       - name: Test with tox
         run: tox
-      {%- if cookiecutter.use_codecov -%}
+      {% if cookiecutter.use_codecov -%}
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         if: {% raw %}${{ env.CODECOV_TOKEN != '' }}{% endraw %}
@@ -35,7 +35,7 @@ jobs:
         with:
           token: {% raw %}${{ env.CODECOV_TOKEN }}{% endraw %}
           slug: {{ cookiecutter.github_username }}/{{ cookiecutter.__package_name }}
-      {% endif %}
+      {%- endif %}
 
   bump-version:
     needs: tox
