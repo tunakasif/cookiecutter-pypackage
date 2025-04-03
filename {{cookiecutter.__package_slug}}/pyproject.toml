@@ -34,6 +34,9 @@ dev = [
 {% if cookiecutter.use_pytest -%}
     "pytest-cov>=6.0.0",
     "pytest>=8.3.5",
+{%- if cookiecutter.use_codecov %}
+    "codecov>=2.1.13",
+{%- endif %}
 {%- endif %}
     "commitizen>=4.4.1",
     "pep8-naming>=0.14.1",
